@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    font-family: 'Poppins';
+    font-size: 18px;
+}
+
+body{
+    background-color: #fff;
+}
+
+.container{
+    width: 299px;
+    height: 436px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.image-sneaker{
+    border-radius: 12px;
+    width: 299px;
+    height: 363px;
+}
+
+
+.carousel-item img {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 10px;
+}
+
+
+
+.price{
+    width: 88px;
+    height: 27px;
+    color: #1E1E1E80;
+    position: absolute;
+    margin-top: 290px;
+}
+
+.brandname{
+    width: 128px;
+    height: 27px;
+    color: #1E1E1E;
+    overflow-y: scroll;
+
+}
+
+
+.Descr{
+    width: 1300px;
+    height: 350px;
+    position: absolute;
+    padding-left: 96px;
+    margin: auto;
+}
+
+.BSPcont{
+    width: 256px;
+    height: 189px;
+}
+
+.BSP{
+    font-size: 32px;
+    line-height: 48px;
+    width: 256px;
+    height: 96px;
+    position: absolute;
+    margin-top: 0px;
+}
+
+.BSP_desc{
+    margin-top: 108px;
+    width: 196px;
+    height: 81px;
+    line-height: 27px;
+    position: absolute;
+}
+
+.SeeMore{
+    margin-top: 24px;
+    width: 168px;
+    height: 51px;
+    border-radius: 8px;
+    background-color: #C1DCDC;
+    border: none;
+
+}
+
+.catalog{
+    width: 1000px; 
+    height: 350px; 
+    overflow: hidden; 
+    margin-left: 200px;
+    display: flex;
+}
+
+.carousel-item{
+    transition: transform 0.5s ease-in-out; 
+    background: none;
+}
+
+#next{
+    margin-top: 0px;
+    position: absolute;
+    margin-left: 977px;
+    width: 25px;
+    height: 350px;
+    z-index: 2;
+    background-repeat: no-repeat;
+    background-position-y: 140px;
+    border: none;
+    background-color: transparent;
+}
+
+
+#prev{
+    width: 20px;
+    height: 350px;
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+}
+
+.carousel{
+    padding-bottom: 1000px;
+    position: absolute;
+}
+
+.head{
+    display: flex;
+    justify-content: space-around;
+    margin: auto;
+}
