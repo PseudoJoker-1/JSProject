@@ -21,14 +21,17 @@
         </div>
 
         <div class="head-banner">
-            <h1 class="banner-Text">Buy your <br> dream plants</h1>
+            <h1 class="banner-Text">Buy your <br> dream product</h1>
             <img class="banner-Line" src="image/Line 2.svg" alt="">
             <p class="banner-Desc">50+ <br> <p class="banner-Desc-continue">Products Species</p></p>
 
             <p class="banner-Desc2">100+ <br> <p class="banner-Desc-continue2"> Customers </p></p>
-            <input type="text" placeholder="What are you looking for?">
-            <img class="arrow" src="" alt="">
-            <img src="rectangle" alt="">
+            <input id="banner-search" type="text" placeholder="What are you looking for?", maxlength="18", onkeyup="filterProducts()", onchange="filterProducts()">
+            <img class="banner-arrow" src="image/Vector 186.svg" alt="">
+            <img class="banner-rectangle" src="image/Rectangle 2.svg" alt="">
+            <div id="productList">
+
+            </div>
         </div>
 
 

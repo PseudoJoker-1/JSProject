@@ -152,7 +152,7 @@ body{
     line-height: 68px;
     padding-left: 48px;
     padding-top: 48px; 
-    width: 512px;
+    width: 550px;
     height: 128px;
 }
 
@@ -198,3 +198,50 @@ body{
     line-height: 27px;
 }
 
+#banner-search{
+    position: absolute;
+    margin-left: 48px;
+    border-radius: 12px;
+    width: 449px;
+    height: 64px;
+    text-align: center;
+    background-image: url(image/Search.svg);
+    background-repeat: no-repeat;
+    background-position: 400px;
+    border: none;
+}
+
+.banner-arrow{
+    position: absolute;
+    margin-left: 522px;
+}
+
+.banner-rectangle{
+    position: absolute;
+    margin-left: 726px;
+    margin-top: -185px;
+}
+
+#productList{
+    margin-top: 100px;
+}
+
+.product-item{
+    position: relative;
+    width: 800px;
+    height: 60px;
+    background-color: white;
+    text-align: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    z-index: 5; 
+    border-radius: 8px;
+}
+
+.product-price{
+    width: 88px;
+    height: 27px;
+    color: #1E1E1E80;
+    margin-left: 350px;
+    margin-top: -0px;
+}

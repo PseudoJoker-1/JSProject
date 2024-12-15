@@ -1,6 +1,7 @@
 const catalog = document.querySelector('.catalog')
 const nextButton = document.querySelector('#next')
 const prevButton = document.querySelector('#prev')
+let products = [];
 prevButton.style.opacity = 0
 let currentIndex = 0;
 const url = 'https://fakestoreapi.com/products/'; 
@@ -36,7 +37,8 @@ fetch(url,options)
         block.append(image)
         block.append(nameBrand)
         catalog.append(block)
-        
+        products.push({title: element.title, price: element.price, image: element.image})
+        console.log(products)
     }); 
 
 
@@ -92,3 +94,37 @@ prevButton.addEventListener('click', () => {
 
 
 
+function displayProducts(filteredProducts) {
+    const productList = document.getElementById('productList');
+    productList.innerHTML = ''; // Clear previous results
+    console.log('Filtered products: ', filteredProducts)
+    filteredProducts.forEach(product => {
+        const productItem = document.createElement('div');
+        productItem.className = 'product-item';
+        productItem.textContent = product.title;
+        productItem.style.backgroundImage = 'url('+ product.image +')';
+        const price = document.createElement('p');
+        price.className = 'product-price';
+        price.textContent = `₱ ${product.price}`;
+        productList.appendChild(productItem);
+        productItem.appendChild(price)
+
+    });
+}
+
+function filterProducts() {
+    const searchBar = document.getElementById('banner-search');
+    if(searchBar.textContent == ''){
+        const productList = document.getElementById('productList');
+        productList.forEach(element => {
+            element.remove()
+        });
+    }
+
+    const query = searchBar.value.toLowerCase();
+    const filteredProducts = products.filter(product => product.title.toLowerCase().includes(query));
+    displayProducts(filteredProducts);
+}
+
+// Initial display of all products
+displayProducts(products);
