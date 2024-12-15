@@ -114,17 +114,19 @@ function displayProducts(filteredProducts) {
 
 function filterProducts() {
     const searchBar = document.getElementById('banner-search');
-    if(searchBar.textContent == ''){
-        const productList = document.getElementById('productList');
-        productList.forEach(element => {
-            element.remove()
-        });
-    }
 
     const query = searchBar.value.toLowerCase();
     const filteredProducts = products.filter(product => product.title.toLowerCase().includes(query));
     displayProducts(filteredProducts);
 }
+const searchBar = document.getElementById('banner-search');
+    
+// Handle input blur (loss of focus)
+searchBar.addEventListener('blur', () => {
+    displayProducts([]);
+});
 
+// Handle input changes
+searchBar.addEventListener('input', filterProducts);
 // Initial display of all products
 displayProducts(products);
