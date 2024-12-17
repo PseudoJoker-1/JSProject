@@ -1,8 +1,9 @@
 document.getElementById('authForm').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    event.preventDefault()
+    const userData = {
+        username: document.getElementById('username').value,
+        password: document.getElementById('password').value
+    };
     const message = document.getElementById('message');
 
     const formTitle = document.getElementById('formTitle');
@@ -11,22 +12,24 @@ document.getElementById('authForm').addEventListener('submit', function(event) {
 
     if (document.getElementById('formTitle').textContent === 'Вход в систему') {
 
-        const storedPassword = localStorage.getItem(username);
-        if (storedPassword && storedPassword === password) {
+        const storedPassword = JSON.parse(localStorage.getItem('usersData'));
+        const password = document.getElementById('password')
+        if (storedPassword.password == password.value) {
             message.textContent = 'Успешный вход!';
             message.style.color = 'green';
             window.location.href = '../index.html'
             
         } else {
+            console.log(storedPassword.password)
             message.textContent = 'Неверный логин или пароль.';
             message.style.color = 'red'
         }
     } else {
 
-        if (localStorage.getItem(username)) {
+        if (localStorage.getItem('username')) {
             message.textContent = 'Пользователь с таким логином уже существует.';
         } else {
-            localStorage.setItem(username, password);
+            localStorage.setItem('usersData', JSON.stringify(userData));
             message.textContent = 'Регистрация прошла успешно! Теперь вы можете войти.';
             message.style.color = 'green';
             setTimeout(() => {
@@ -60,3 +63,14 @@ document.getElementById('toggleLink').addEventListener('click', function() {
     }
     
 })
+
+function checkAuth() {
+    const userStr = localStorage.getItem('usersData'); // Получаем текущего пользователя
+    console.log(localStorage)
+    console.log('Current user:', userStr); // Проверяем значение
+    if (userStr) {
+        window.location.href = '../index.html';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', checkAuth);
