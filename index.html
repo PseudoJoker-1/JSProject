@@ -1,0 +1,130 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="style.css"> 
+</head> 
+<body> 
+    <header> 
+        <div class="head"> 
+            <h2 class="Shop-Title">GreenMind</h2> 
+            <p class="Home">Home</p> 
+            <p class="Products">Products</p> 
+            <p class="Contacts">Contacts</p> 
+            <img class="cart" onclick="sideBarActive()" src="image/Vector.svg" alt=""> 
+            <div id="cartList"> 
+                <p class="TotalSum">Total: </p> 
+            </div> 
+            <a class="profile-redirect" onmouseleave="profileTransform()" onmouseover="profileTransform()" href="auth/auth.html"><img class="profile" src="image/Vector (1).svg" alt=""><p class="profile-name">123</p></a> 
+ 
+            <img src="image/FilterRight.svg" alt=""> 
+        </div> 
+ 
+        <div class="head-banner"> 
+            <h1 class="banner-Text">Buy your <br> dream product</h1> 
+            <img class="banner-Line" src="image/Line 2.svg" alt=""> 
+            <p class="banner-Desc">50+ <br> <p class="banner-Desc-continue">Products Species</p></p> 
+ 
+            <p class="banner-Desc2">100+ <br> <p class="banner-Desc-continue2"> Customers </p></p> 
+            <input id="banner-search" type="text" placeholder="What are you looking for?", maxlength="18", onkeyup="filterProducts()", onchange="filterProducts()"> 
+            <img class="banner-arrow" src="image/Vector 186.svg" alt=""> 
+            <img class="banner-rectangle" src="image/Rectangle 2.svg" alt=""> 
+            <div id="productList"> 
+ 
+            </div> 
+        </div> 
+ 
+ 
+ 
+        <div class="Descr"> 
+ 
+            <div class="BSPcont"> 
+                <h2 class = 'BSP'>Best Selling Products</h2> 
+                <p class = 'BSP_desc'>Easiest way to healthy life by buying your favorite product</p> 
+                <div class = 'carousel'> 
+                    <div class="catalog"> 
+                        <button id="next">></button> 
+                        <button id="prev"><</button> 
+                    </div> 
+                </div> 
+            </div> 
+         
+            <button class = 'SeeMore'>See more   ➡</button> 
+ 
+ 
+ 
+        </div> 
+ 
+    </header> 
+ 
+    <section class="about-us"> 
+        <div class="info-box"> 
+            <img src="image/Group 1.svg" alt=""> 
+            <h3>Large Assortment</h3> 
+            <p>We offer many different types of products with fewer variations in each category.</p> 
+        </div> 
+        <div class="info-box"> 
+            <img src="image/Group 1 (1).svg" alt=""> 
+            <h3>Fast & Free Shipping</h3> 
+            <p>4-day or less delivery time, free shipping, and an expedited delivery option.</p> 
+        </div> 
+        <div class="info-box"> 
+            <img src="image/Group 1 (2).svg" alt=""> 
+            <h3>24/7 Support</h3> 
+            <p>Answers to any business-related inquiries are available 24/7.</p> 
+        </div> 
+    </section> 
+ 
+ 
+    <section class="categories"> 
+        <h2>Categories</h2> 
+        <p>Find what you're looking for</p> 
+        <div class="category-list"> 
+            <div class="category-item"> 
+                <img src="image/Frame 36.png" alt="Houseplants"> 
+                <h4>Houseplants</h4> 
+            </div> 
+            <div class="category-item"> 
+                <img src="image/Frame 38.png" alt="Small Plants"> 
+                <h4>Small Plants</h4> 
+            </div> 
+            <div class="category-item"> 
+                <img src="image/Frame 37.png" alt="Plant Accessories"> 
+                <h4>Plant Accessories</h4> 
+            </div> 
+        </div> 
+        <button>Explore →</button> 
+    </section> 
+ 
+ 
+    <section class="reviews"> 
+        <h2>What customers say
+about GREENSHOP?</h2> 
+        <div class="review-container"> 
+            <div class="review"> 
+                <p>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id dolor dui.”</p> 
+                <span>- Alice Dan</span> 
+            </div> 
+            <div class="review"> 
+                <p>“Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.”</p> 
+                <span>- John Doe</span> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <!-- Footer --> 
+    <footer> 
+        <p>© 2024 GREENSHOP. All rights reserved.</p> 
+        <ul> 
+            <li>Privacy Policy</li> 
+            <li>Terms of Service</li> 
+            <li>Contact</li> 
+        </ul> 
+    </footer> 
+    <script src="script.js"></script> 
+</body> 
+</html>
