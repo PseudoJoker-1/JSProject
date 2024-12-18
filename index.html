@@ -12,11 +12,12 @@
     <header> 
         <div class="head"> 
             <h2 class="Shop-Title">GreenMind</h2> 
-            <p class="Home">Home</p> 
-            <p class="Products">Products</p> 
+            <p class="Home" onclick="ShowHome()">Home</p> 
+            <p class="Products" onclick="ShowProducts()">Products</p> 
             <p class="Contacts">Contacts</p> 
             <img class="cart" onclick="sideBarActive()" src="image/Vector.svg" alt=""> 
             <div id="cartList"> 
+                <button class="Buybtn" onclick="buyFunc()">Buy</button>
                 <p class="TotalSum">Total: </p> 
             </div> 
             <a class="profile-redirect" onmouseleave="profileTransform()" onmouseover="profileTransform()" href="auth/auth.html"><img class="profile" src="image/Vector (1).svg" alt=""><p class="profile-name">123</p></a> 
@@ -60,7 +61,9 @@
         </div> 
  
     </header> 
- 
+    <section class="ProductsSect">
+
+    </section>
     <section class="about-us"> 
         <div class="info-box"> 
             <img src="image/Group 1.svg" alt=""> 
@@ -116,7 +119,7 @@ about GREENSHOP?</h2>
         </div> 
     </section> 
  
-    <!-- Footer --> 
+  
     <footer> 
         <p>© 2024 GREENSHOP. All rights reserved.</p> 
         <ul> 
