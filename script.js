@@ -59,7 +59,7 @@ fetch(url,options)
 
 })
 
-function checkDuplicatesAndRemove(arr, key) {
+function checkDuplicatesAndRemove(arr, key, newItem) {
     const seen = new Set(); 
     const uniqueItems = arr.filter(item => {
         if (seen.has(item[key])) {
@@ -70,7 +70,10 @@ function checkDuplicatesAndRemove(arr, key) {
     });
 
     if (uniqueItems.length < arr.length) {
-        uniqueItems[0].amount += 1
+        var indexElem = uniqueItems.findIndex(el => el.id === newItem.id)
+        console.log('Index of the new element ',indexElem)
+        uniqueItems[indexElem].amount += 1
+        console.log(uniqueItems)
         return uniqueItems
     } else {
         console.log('No duplicates found');
@@ -131,11 +134,11 @@ function addToCart(product) {
         const userName2 = JSON.parse(localStorage.getItem('usersData'))
         console.log(userName2.username)
         profileName.textContent = userName2.username
-        product['amount'] = 1
         
         allCart.push(product);
         console.log(allCart);
-        var checkDuplicate = checkDuplicatesAndRemove(allCart)
+        var checkDuplicate = checkDuplicatesAndRemove(allCart,'id',product)
+        console.log('Checkduplicate result: ',checkDuplicate)
         updateCartDisplay(checkDuplicate);
         totalsum += product.price
         totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
@@ -348,6 +351,8 @@ function ShowProducts(){
 
         const btn = document.createElement('button');
         btn.classList.add('buybtn2')
+        element['amount'] = 1
+        console.log(answer2)
         btn.textContent = 'Buy'
         btn.addEventListener('click', () => {
             addToCart(element)
