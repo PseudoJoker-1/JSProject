@@ -70,9 +70,6 @@ function checkDuplicatesAndRemove(arr, key, newItem) {
     });
 
     if (uniqueItems.length < arr.length) {
-        var indexElem = uniqueItems.findIndex(el => el.id === newItem.id)
-        console.log('Index of the new element ',indexElem)
-        uniqueItems[indexElem].amount += 1
         console.log(uniqueItems)
         return uniqueItems
     } else {
@@ -134,7 +131,7 @@ function addToCart(product) {
         const userName2 = JSON.parse(localStorage.getItem('usersData'))
         console.log(userName2.username)
         profileName.textContent = userName2.username
-        
+        product.amount += 1
         allCart.push(product);
         console.log(allCart);
         var checkDuplicate = checkDuplicatesAndRemove(allCart,'id',product)
@@ -160,12 +157,16 @@ function removeFromCart(product) {
 
 function AddItem(item1){
     var result = allCart.find(item => item.title === item1.title)
+    totalsum += item1.price
+    totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
     result.amount += 1
     updateCartDisplay(allCart)
 }
 
 function RemoveItem(item2){
     var result = allCart.find(item => item.title === item2.title)
+    totalsum -= item2.price
+    totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
     result.amount -= 1
     updateCartDisplay(allCart)
 }
@@ -181,6 +182,14 @@ function updateCartDisplay(cartarg) {
     });
     
         cartarg.forEach(item => {
+            if(item.amount === 0){
+                console.log('item amount is zero!')
+                totalsum -= item.price
+                totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
+                allCart.dele
+                return null
+
+            }
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
             const title = document.createElement('p');
@@ -295,10 +304,11 @@ function sideBarActive(){
 }
 
 function buyFunc(){
-    if(cart.length !== 0){
+    if(allCart.length !== 0){
         alert('Successful!')
         totalsum -= totalsum
         totalSumP.textContent = `Total sum: ${totalsum}₱`
+        localStorage.setItem('PurchasedProdData', JSON.stringify(allCart));
         Array.from(cartList.children).forEach(child => {
             if (child.tagName !== 'P' && child.tagName !== 'BUTTON') {
                 child.remove();
@@ -351,7 +361,7 @@ function ShowProducts(){
 
         const btn = document.createElement('button');
         btn.classList.add('buybtn2')
-        element['amount'] = 1
+        element['amount'] = 0
         console.log(answer2)
         btn.textContent = 'Buy'
         btn.addEventListener('click', () => {
