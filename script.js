@@ -59,6 +59,25 @@ fetch(url,options)
 
 })
 
+function checkDuplicatesAndRemove(arr, key) {
+    const seen = new Set(); 
+    const uniqueItems = arr.filter(item => {
+        if (seen.has(item[key])) {
+            return false; 
+        }
+        seen.add(item[key]);
+        return true; 
+    });
+
+    if (uniqueItems.length < arr.length) {
+        uniqueItems[0].amount += 1
+        return uniqueItems
+    } else {
+        console.log('No duplicates found');
+        return uniqueItems
+    }
+    return uniqueItems
+}
 
 function updateCarousel(IsNextbtn) {
     const items = document.querySelectorAll('.carousel-item');
@@ -113,19 +132,11 @@ function addToCart(product) {
         console.log(userName2.username)
         profileName.textContent = userName2.username
         product['amount'] = 1
-        Array.from(allCart).forEach(child => {
-            if(child.title === product.title){
-                console.log('yes')
-                var res = allCart.find(item => item.title === child.title)
-                res.amount += 1
-                console.log(res)
-                
-            }
-        });
         
         allCart.push(product);
-        console.log(allCart)
-        updateCartDisplay(allCart);
+        console.log(allCart);
+        var checkDuplicate = checkDuplicatesAndRemove(allCart)
+        updateCartDisplay(checkDuplicate);
         totalsum += product.price
         totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
     }catch(error){
@@ -156,112 +167,51 @@ function RemoveItem(item2){
     updateCartDisplay(allCart)
 }
 
-function checkDuplicatesAndRemove(arr, key) {
-    const seen = new Set(); 
-    const uniqueItems = arr.filter(item => {
-        if (seen.has(item[key])) {
-            return false; 
-        }
-        seen.add(item[key]);
-        return true; 
-    });
 
-    if (uniqueItems.length < arr.length) {
-        updateCartDisplay(uniqueItems)
-    } else {
-        console.log('No duplicates found');
-        return null
-    }
-    return uniqueItems
-}
 
 function updateCartDisplay(cartarg) {
-    foundOne = false
     Array.from(cartList.children).forEach(child => {
         if (child.tagName !== 'P' && child.tagName !== 'BUTTON') {
             child.remove();
         }
 
     });
-    console.log(allCart)
+    
+        cartarg.forEach(item => {
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            const title = document.createElement('p');
+            title.textContent = item.title;
+            title.className = 'Product-title'
+            const price = document.createElement('p');
+            price.textContent = `₱ ${item.price}`;
+            const AddRemoveMore = document.createElement('div')
+            AddRemoveMore.className = 'AddRemoveMore'
+            const Amount = document.createElement('p')
+            Amount.className = 'Amount'
+            Amount.style.fontSize = '15px'
+            Amount.textContent = item.amount
+            const Addbtn = document.createElement('button')
+            Addbtn.className = 'Addmore'
+            Addbtn.textContent = '+'
+            Addbtn.addEventListener('click', () => AddItem(item))
+            const Removebtn = document.createElement('button')
+            Removebtn.className = 'Removemore'
+            Removebtn.textContent = '-'
+            Removebtn.addEventListener('click', () => RemoveItem(item))
+            AddRemoveMore.appendChild(Addbtn)
+            AddRemoveMore.appendChild(Amount)
+            AddRemoveMore.appendChild(Removebtn)      
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.addEventListener('click', () => removeFromCart(item));
+            cartItem.appendChild(title);
+            cartItem.appendChild(price);
+            cartItem.appendChild(AddRemoveMore)
+            cartItem.appendChild(removeButton);
+            cartList.appendChild(cartItem);
+        })
 
-    var dupli = checkDuplicatesAndRemove(allCart,'id')
-    if(allCart.length !== 0){
-        if (allCart.length !== dupli.length) {
-            console.log('Duplicates were found and removed!');
-            dupli.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                const title = document.createElement('p');
-                title.textContent = item.title;
-                title.className = 'Product-title'
-                const price = document.createElement('p');
-                price.textContent = `₱ ${item.price}`;
-                const AddRemoveMore = document.createElement('div')
-                AddRemoveMore.className = 'AddRemoveMore'
-                const Amount = document.createElement('p')
-                Amount.className = 'Amount'
-                Amount.style.fontSize = '15px'
-                Amount.textContent = item.amount
-                const Addbtn = document.createElement('button')
-                Addbtn.className = 'Addmore'
-                Addbtn.textContent = '+'
-                Addbtn.addEventListener('click', () => AddItem(item))
-                const Removebtn = document.createElement('button')
-                Removebtn.className = 'Removemore'
-                Removebtn.textContent = '-'
-                Removebtn.addEventListener('click', () => RemoveItem(item))
-                AddRemoveMore.appendChild(Addbtn)
-                AddRemoveMore.appendChild(Amount)
-                AddRemoveMore.appendChild(Removebtn)      
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
-                removeButton.addEventListener('click', () => removeFromCart(item));
-                cartItem.appendChild(title);
-                cartItem.appendChild(price);
-                cartItem.appendChild(AddRemoveMore)
-                cartItem.appendChild(removeButton);
-                cartList.appendChild(cartItem);
-            })
-        } else {
-            console.log('No duplicates found.');
-        
-            cartarg.forEach(item => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                const title = document.createElement('p');
-                title.textContent = item.title;
-                title.className = 'Product-title'
-                const price = document.createElement('p');
-                price.textContent = `₱ ${item.price}`;
-                const AddRemoveMore = document.createElement('div')
-                AddRemoveMore.className = 'AddRemoveMore'
-                const Amount = document.createElement('p')
-                Amount.className = 'Amount'
-                Amount.style.fontSize = '15px'
-                Amount.textContent = item.amount
-                const Addbtn = document.createElement('button')
-                Addbtn.className = 'Addmore'
-                Addbtn.textContent = '+'
-                Addbtn.addEventListener('click', () => AddItem(item))
-                const Removebtn = document.createElement('button')
-                Removebtn.className = 'Removemore'
-                Removebtn.textContent = '-'
-                Removebtn.addEventListener('click', () => RemoveItem(item))
-                AddRemoveMore.appendChild(Addbtn)
-                AddRemoveMore.appendChild(Amount)
-                AddRemoveMore.appendChild(Removebtn)      
-                const removeButton = document.createElement('button');
-                removeButton.textContent = 'Remove';
-                removeButton.addEventListener('click', () => removeFromCart(item));
-                cartItem.appendChild(title);
-                cartItem.appendChild(price);
-                cartItem.appendChild(AddRemoveMore)
-                cartItem.appendChild(removeButton);
-                cartList.appendChild(cartItem);
-            })
-        }
-    }
 }
 
 
