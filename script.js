@@ -140,19 +140,24 @@ function addToCart(product) {
         totalsum += product.price
         totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
     }catch(error){
-        alert(console.error(error))
+        window.location.href = '../auth/auth.html'
     }
     
 
 }
 
 function removeFromCart(product) {
+    
     allCart = allCart.filter(item => item !== product);
     console.log('All cart:',allCart)
-    totalsum -= product.price
+    totalsum -= product.price * product.amount
+    product.amount = 0
     console.log(totalsum)
     totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
-    updateCartDisplay(allCart)
+    var checkDuplicate = checkDuplicatesAndRemove(allCart,'id',product)
+    console.log('Checkduplicate result: ',checkDuplicate)
+    updateCartDisplay(checkDuplicate);
+
 }
 
 function AddItem(item1){
@@ -160,15 +165,21 @@ function AddItem(item1){
     totalsum += item1.price
     totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
     result.amount += 1
-    updateCartDisplay(allCart)
+    console.log('add item result: ',allCart)
+    var checkDuplicate = checkDuplicatesAndRemove(allCart,'id',item1)
+    console.log('Checkduplicate result: ',checkDuplicate)
+    updateCartDisplay(checkDuplicate);
 }
 
 function RemoveItem(item2){
+    console.log('Item 2 price: ',item2.price)
     var result = allCart.find(item => item.title === item2.title)
-    totalsum -= item2.price
-    totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
+    totalsum -= item2.price.toFixed(2)
+    totalSumP.textContent = `Total sum: ${totalsum.toFixed(2) * 1}₱`
+    var checkDuplicate = checkDuplicatesAndRemove(allCart,'id',item2)
+    console.log('Checkduplicate result: ',checkDuplicate)
     result.amount -= 1
-    updateCartDisplay(allCart)
+    updateCartDisplay(checkDuplicate);
 }
 
 
@@ -184,9 +195,8 @@ function updateCartDisplay(cartarg) {
         cartarg.forEach(item => {
             if(item.amount === 0){
                 console.log('item amount is zero!')
-                totalsum -= item.price
-                totalSumP.textContent = `Total sum: ${totalsum.toFixed(2)}₱`
-                allCart.dele
+                totalSumP.textContent = `Total sum: ${totalsum.toFixed(2) * 1}₱ `
+                
                 return null
 
             }
