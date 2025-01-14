@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="head">
+        <h2 class="Shop-Title">GreenMind</h2> 
+        <p class="Home" onclick="window.location.href='../index.html'">Home</p> 
+
+        <img src="image/FilterRight.svg" alt=""> 
+    </div> 
+    </div>
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200&h=200" alt="Profile Avatar">
+                </div>
+                <h1 class="profile-name">Sarah Johnson</h1>
+                <p class="profile-bio">Professional photographer & digital artist</p>
+                <div class="profile-actions">
+                    <button class="btn-change-password">Change Password</button>
+                </div>
+            </div>
+            <div class="profile-social">
+                <div class="social-link">
+                    <i class="icon-globe"></i>
+                </div>
+                <div class="social-link">
+                    <i class="icon-twitter"></i>
+                </div>
+                <div class="social-link">
+                    <i class="icon-facebook"></i>
+                </div>
+                <div class="social-link">
+                    <i class="icon-instagram"></i>  
+                </div>
+            </div>
+        </div>
+        <div class="profile-details">
+            <div class="details-section">
+                <h2>Order History</h2>
+                <div id="orderHistory" class="order-history">
+                    <!-- Orders will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="profile-details">
+            <div class="details-section">
+                <h2>Personal Information</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>Full Name</label>
+                        <p>Sarah Johnson</p>
+                    </div>
+                    <div class="info-item2">
+                        <label>Email</label>
+                        <p>sarah@example.com</p>
+                    </div>
+                    <div class="info-item3">
+                        <label>Phone</label>
+                        <p>+1 234 567 8900</p>
+                    </div>
+                    <div class="info-item4">
+                        <label>Address</label>
+                        <p>123 Photography Lane, Creative City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Change Password</h2>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                    <input type="password" id="currentPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm New Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <button type="submit" class="btn-submit">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    
+    <script src="profile.js"></script>
+</body>
+</html>

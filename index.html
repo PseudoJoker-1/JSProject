@@ -14,7 +14,6 @@
             <h2 class="Shop-Title">GreenMind</h2> 
             <p class="Home" onclick="ShowHome()">Home</p> 
             <p class="Products" onclick="ShowProducts()">Products</p> 
-            <p class="Contacts">Contacts</p> 
             <img class="cart" onclick="sideBarActive()" src="image/Vector.svg" alt=""> 
             <div id="cartList"> 
                 <button class="Buybtn" onclick="buyFunc()">Buy</button>
@@ -22,7 +21,7 @@
             </div> 
             <a class="profile-redirect" onmouseleave="profileTransform()" onmouseover="profileTransform()" href="auth/auth.html"><img class="profile" src="image/Vector (1).svg" alt=""><p class="profile-name">123</p></a> 
  
-            <img src="image/FilterRight.svg" alt=""> 
+
         </div> 
  
         <div class="head-banner"> 
@@ -54,7 +53,7 @@
                 </div> 
             </div> 
          
-            <button class = 'SeeMore'>See more   ➡</button> 
+            <button class='SeeMore' onclick="ShowProducts()">See more   ➡</button> 
  
  
  
@@ -62,7 +61,6 @@
  
     </header> 
     <section class="ProductsSect">
-
     </section>
     <section class="about-us"> 
         <div class="info-box"> 
@@ -100,7 +98,7 @@
                 <h4>Plant Accessories</h4> 
             </div> 
         </div> 
-        <button>Explore →</button> 
+        <button onclick="ShowProducts()">Explore →</button> 
     </section> 
  
  

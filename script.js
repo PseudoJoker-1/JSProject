@@ -9,6 +9,7 @@ const totalSumP = document.querySelector('.TotalSum')
 const productsBtn = document.querySelector('.Products')
 const header = document.querySelector('header');
 const ProductsSection = document.querySelector('.ProductsSect')
+const dropdown = document.querySelector('.dropdown')
 
 
 let foundOne = false
@@ -329,63 +330,97 @@ function buyFunc(){
     
 }
 
-function ShowProducts(){
-    Array.from(document.body.children).forEach(child => {
-        if (child.tagName !== 'HEADER' && child.tagName !== 'FOOTER' && child.className !== 'ProductsSect' && child.className !== 'products-container' && child.tagName !== 'SCRIPT') {
+function ShowProducts() {
+    console.log('Called showProducts function');
 
+    Array.from(document.body.children).forEach(child => {
+        if (
+            child.tagName !== 'HEADER' &&
+            child.tagName !== 'FOOTER' &&
+            child.className !== 'ProductsSect' &&
+            child.className !== 'products-container' &&
+            child.tagName !== 'SCRIPT'
+        ) {
             child.style.display = 'none';
         }
     });
+
     Array.from(header.children).forEach(child => {
         if (!child.classList.contains('head')) {
-          child.style.display = 'none'; 
+            child.style.display = 'none';
         }
-      });
-    
-    OnProducts = true
-
-    
-    fetch(url, options)
-    .then(data => data.json())
-    .then(answer2 => {
-      console.log(answer2);
-
-      const productsContainer = document.createElement('div');
-      productsContainer.classList.add('products-container');
-      ProductsSection.append(productsContainer);
-
-      answer2.forEach(element => {
-        const block = document.createElement('div');
-        block.classList.add('products-List');
-
-        const image = document.createElement('img');
-        image.src = element.image;
-
-        const nameBrand = document.createElement('h2');
-        nameBrand.textContent = element.title;
-        nameBrand.classList.add('brandname2');
-
-        const price = document.createElement('p');
-        price.classList.add('price2');
-        price.textContent = `₱ ${element.price}`;
-
-        const btn = document.createElement('button');
-        btn.classList.add('buybtn2')
-        element['amount'] = 0
-        console.log(answer2)
-        btn.textContent = 'Buy'
-        btn.addEventListener('click', () => {
-            addToCart(element)
-        });
-        
-        block.append(image);
-        block.append(nameBrand);
-        block.append(price);
-        block.append(btn)
-        productsContainer.append(block);
-      });
     });
-    
+
+    OnProducts = true;
+
+    fetch(url, options)
+        .then(data => data.json())
+        .then(answer2 => {
+            console.log(answer2);
+
+            // Создаем контейнер для продуктов
+            const productsContainer = document.createElement('div');
+            productsContainer.classList.add('products-container');
+            ProductsSection.append(productsContainer);
+
+            // Функция для отображения продуктов
+            function displayProducts(products) {
+                productsContainer.innerHTML = ''; // Очищаем контейнер
+                products.forEach(element => {
+                    const block = document.createElement('div');
+                    block.classList.add('products-List');
+
+                    const image = document.createElement('img');
+                    image.src = element.image;
+
+                    const nameBrand = document.createElement('h2');
+                    nameBrand.textContent = element.title;
+                    nameBrand.classList.add('brandname2');
+
+                    const price = document.createElement('p');
+                    price.classList.add('price2');
+                    price.textContent = `₱ ${element.price}`;
+
+                    const btn = document.createElement('button');
+                    btn.classList.add('buybtn2');
+                    element['amount'] = 0;
+                    btn.textContent = 'Buy';
+                    btn.addEventListener('click', () => {
+                        addToCart(element);
+                    });
+
+                    block.append(image);
+                    block.append(nameBrand);
+                    block.append(price);
+                    block.append(btn);
+                    productsContainer.append(block);
+                });
+            }
+
+            // Отображаем продукты при первой загрузке
+            displayProducts(answer2);
+
+            // Добавляем сортировку
+            const sortMenu = document.createElement('div');
+            sortMenu.classList.add('sort-menu');
+
+            const ascendingBtn = document.createElement('button');
+            ascendingBtn.textContent = 'Sort Ascending';
+            ascendingBtn.addEventListener('click', () => {
+                const sorted = [...answer2].sort((a, b) => a.price - b.price);
+                displayProducts(sorted);
+            });
+
+            const descendingBtn = document.createElement('button');
+            descendingBtn.textContent = 'Sort Descending';
+            descendingBtn.addEventListener('click', () => {
+                const sorted = [...answer2].sort((a, b) => b.price - a.price);
+                displayProducts(sorted);
+            });
+
+            sortMenu.append(ascendingBtn, descendingBtn);
+            ProductsSection.prepend(sortMenu);
+        });
 }
 
 
