@@ -69,7 +69,7 @@ function checkAuth() {
     console.log(localStorage)
     console.log('Current user:', userStr); // Проверяем значение
     if (userStr) {
-        window.location.href = '../index.html';
+        window.location.href = '../profile/profile.html';
     }
 }
 
